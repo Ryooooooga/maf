@@ -1,0 +1,6 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+AllowShortFunctionsOnASingleLine: None
+AlwaysBreakBeforeMultilineStrings: true
+IndentPPDirectives: AfterHash
+SeparateDefinitionBlocks: Always
