@@ -1,0 +1,14 @@
+# This workflow is managed by gh actions-lock.
+
+name: CI
+
+on:
+  - push
+
+jobs:
+  clang-format:
+    name: clang-format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: jidicula/clang-format-action@v4.18.0
