@@ -8,3 +8,37 @@ resource "github_repository" "repository" {
   allow_update_branch    = true
   delete_branch_on_merge = true
 }
+
+resource "github_repository_ruleset" "default_branch_protection" {
+  name        = "default_branch_protection"
+  repository  = github_repository.repository.name
+  target      = "branch"
+  enforcement = "active"
+
+  conditions {
+    ref_name {
+      include = ["~DEFAULT_BRANCH"]
+      exclude = []
+    }
+  }
+
+  rules {
+    creation                = true
+    deletion                = true
+    required_linear_history = true
+
+    pull_request {
+      required_review_thread_resolution = true
+      allowed_merge_methods             = ["squash", "rebase"]
+    }
+
+    required_status_checks {
+      strict_required_status_checks_policy = true
+
+      required_check {
+        context        = "clang-format"
+        integration_id = local.rulesets.status_check_integration_id.github_actions
+      }
+    }
+  }
+}
