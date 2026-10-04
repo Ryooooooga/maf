@@ -73,7 +73,7 @@ target_compile_options(${PROJECT_NAME}-cflags INTERFACE
 # Target: ${PROJECT_NAME}-static
 set(${PROJECT_NAME}-static_SOURCES
 	cmake.toml
-	"src/lib.c"
+	"src/malloc.c"
 )
 
 add_library(${PROJECT_NAME}-static STATIC)
@@ -124,6 +124,7 @@ endif()
 # Target: ${PROJECT_NAME}-test
 set(${PROJECT_NAME}-test_SOURCES
 	cmake.toml
+	"test/malloc_test.c"
 	"test/test.c"
 )
 
