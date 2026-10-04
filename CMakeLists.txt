@@ -73,6 +73,7 @@ target_compile_options(${PROJECT_NAME}-cflags INTERFACE
 # Target: ${PROJECT_NAME}-static
 set(${PROJECT_NAME}-static_SOURCES
 	cmake.toml
+	"src/arena.c"
 	"src/malloc.c"
 )
 
@@ -124,6 +125,7 @@ endif()
 # Target: ${PROJECT_NAME}-test
 set(${PROJECT_NAME}-test_SOURCES
 	cmake.toml
+	"test/arena_test.c"
 	"test/malloc_test.c"
 	"test/test.c"
 )
