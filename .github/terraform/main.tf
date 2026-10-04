@@ -35,6 +35,20 @@ resource "github_repository_ruleset" "default_branch_protection" {
     required_status_checks {
       strict_required_status_checks_policy = true
 
+      dynamic "required_check" {
+        for_each = flatten([
+          for os in ["ubuntu-latest", "macos-latest"] : [
+            for cc in ["gcc", "clang"] : [
+              for build_type in ["Debug", "Release"] : "test-${os}-${cc}-${build_type}"
+            ]
+          ]
+        ])
+        content {
+          context        = required_check.value
+          integration_id = local.rulesets.status_check_integration_id.github_actions
+        }
+      }
+
       required_check {
         context        = "clang-format"
         integration_id = local.rulesets.status_check_integration_id.github_actions
