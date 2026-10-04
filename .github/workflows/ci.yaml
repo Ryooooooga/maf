@@ -6,6 +6,45 @@ on:
   - push
 
 jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+        cc:
+          - gcc
+          - clang
+        build-type:
+          - Debug
+          - Release
+
+    name: test-${{ matrix.os }}-${{ matrix.cc }}-${{ matrix.build-type }}
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/cache@v6.1.0
+        with:
+          path: |
+            ./build/
+          key: ${{ runner.os }}-${{ matrix.cc }}-${{ matrix.build-type }}-${{ hashFiles('CMakeLists.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.cc }}-${{ matrix.build-type }}-
+            ${{ runner.os }}-${{ matrix.cc }}-
+            ${{ runner.os }}-
+      - uses: aminya/setup-cpp@v1.10.1
+        with:
+          compiler: ${{ case(matrix.cc == 'clang', 'llvm', matrix.cc) }}
+          cmake: true
+      - uses: ZhongRuoyu/setup-llvm@v0.2.0
+      - run: ${{ matrix.cc }} --version
+      - run: make test
+        env:
+          CC: ${{ matrix.cc }}
+          BUILD_TYPE: ${{ matrix.build-type }}
+
   clang-format:
     name: clang-format
     runs-on: ubuntu-latest
