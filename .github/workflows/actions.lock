@@ -4,16 +4,34 @@
 version: 'v0.0.2'
 workflows:
     '.github/workflows/ci.yaml':
+        - 'actions/cache@v6.1.0'
         - 'actions/checkout@v7.0.1'
+        - 'aminya/setup-cpp@v1.10.1'
         - 'jidicula/clang-format-action@v4.18.0'
+        - 'zhongruoyu/setup-llvm@v0.2.0'
 dependencies:
+    'actions/cache@v6.1.0':
+        ref: 'v6.1.0'
+        commit: 'sha1-55cc8345863c7cc4c66a329aec7e433d2d1c52a9'
+        owner_id: 44036562
+        repo_id: 215566462
     'actions/checkout@v7.0.1':
         ref: 'v7.0.1'
         commit: 'sha1-3d3c42e5aac5ba805825da76410c181273ba90b1'
         owner_id: 44036562
         repo_id: 197814629
+    'aminya/setup-cpp@v1.10.1':
+        ref: 'v1.10.1'
+        commit: 'sha1-15a6bd8cf39030f88b5da3d203a829ec4eea4955'
+        owner_id: 16418197
+        repo_id: 406308261
     'jidicula/clang-format-action@v4.18.0':
         ref: 'v4.18.0'
         commit: 'sha1-654a770daa28443dd111d133e4083e21c1075674'
         owner_id: 12765385
         repo_id: 250397925
+    'zhongruoyu/setup-llvm@v0.2.0':
+        ref: 'v0.2.0'
+        commit: 'sha1-eea6238baf53d41c1615923680d7a738da584318'
+        owner_id: 25842576
+        repo_id: 779972427
