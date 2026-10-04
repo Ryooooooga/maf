@@ -4,3 +4,4 @@
 -pedantic
 
 -I./include
+-I./build/cc/Debug/_deps/cute-src

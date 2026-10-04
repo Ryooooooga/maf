@@ -1,9 +1,6 @@
-#include <assert.h>
-
-#include "lib.h"
+#define CUTE_MAIN
+#include "test.h"
 
 int main() {
-    assert(f() == 0);
-
-    return 0;
+    return RUN_ALL();
 }
