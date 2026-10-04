@@ -1,5 +1,5 @@
-#include "lib.h"
+#include <stdio.h>
 
 int main() {
-    return f();
+    return 0;
 }
