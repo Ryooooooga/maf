@@ -13,7 +13,7 @@ FETCHCONTENT_BASE_DIR := ${BUILD_DIR}/_deps
 export CMKR_CACHE := ${BUILD_DIR}/cmkr
 
 .PHONY: build
-build:
+build: gen
 	${CMAKE} -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DFETCHCONTENT_BASE_DIR=${FETCHCONTENT_BASE_DIR} -B ${TARGET_DIR}
 	${CMAKE} --build ${TARGET_DIR} -j
 
@@ -28,10 +28,16 @@ release:
 .PHONY: test
 test: build
 	${CTEST} -V --test-dir ${TARGET_DIR}
+	@${MAKE} -C templates test
+
+.PHONY: gen
+gen:
+	@${MAKE} -C templates gen
 
 .PHONY: fmt
 fmt:
 	${GIT} ls-files -z "*.c" "*.h" | xargs -0 ${CLANG_FORMAT} -i
+	@${MAKE} -C templates fmt
 
 .PHONY: clean
 clean:
