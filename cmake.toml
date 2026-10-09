@@ -27,7 +27,7 @@ properties = { OUTPUT_NAME = "${PROJECT_NAME}" }
 
 [target."${PROJECT_NAME}-exe"]
 type = "executable"
-sources = ["maf/**.c"]
+sources = ["maf/src/**.c"]
 link-libraries = ["${PROJECT_NAME}-cflags", "${PROJECT_NAME}-static"]
 properties = { OUTPUT_NAME = "${PROJECT_NAME}" }
 

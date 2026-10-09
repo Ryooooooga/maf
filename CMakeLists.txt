@@ -99,7 +99,7 @@ set_target_properties(${PROJECT_NAME}-static PROPERTIES
 # Target: ${PROJECT_NAME}-exe
 set(${PROJECT_NAME}-exe_SOURCES
 	cmake.toml
-	"maf/main.c"
+	"maf/src/main.c"
 )
 
 add_executable(${PROJECT_NAME}-exe)
