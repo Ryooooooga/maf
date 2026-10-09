@@ -17,6 +17,10 @@ build: gen
 	${CMAKE} -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DFETCHCONTENT_BASE_DIR=${FETCHCONTENT_BASE_DIR} -B ${TARGET_DIR}
 	${CMAKE} --build ${TARGET_DIR} -j
 
+.PHONY: run
+run: build
+	${TARGET_DIR}/maf ${ARGS}
+
 .PHONY: debug
 debug:
 	@${MAKE} BUILD_TYPE=Debug build
