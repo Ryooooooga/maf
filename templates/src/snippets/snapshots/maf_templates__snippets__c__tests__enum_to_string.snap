@@ -1,0 +1,18 @@
+---
+source: src/snippets/c.rs
+expression: "EnumToStringTemplate\n{\n    typ: color_enum(), arg: \"color\".to_string(), unknown:\n    \"UNKNWON\".to_string(),\n}.render().unwrap()"
+---
+static inline const char *color_to_string(color_t color) {
+    switch (color) {
+        case color_red:
+            return "RED";
+        case color_green:
+            return "GREEN";
+        case color_blue:
+            return "BLUE";
+        case color_black:
+            return "BLACK";
+        default:
+            return "UNKNWON";
+    }
+}

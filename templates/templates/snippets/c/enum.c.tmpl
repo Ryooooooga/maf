@@ -1,0 +1,5 @@
+typedef enum {{ typ.type_name() }} {
+    {%- for variant in typ.variants %}
+    {{ typ.prefix }}_{{ variant.name }},{% if let Some(comment) = variant.comment %} // {{ comment }}{% endif %}
+    {%- endfor %}
+} {{ typ.type_name() }};
