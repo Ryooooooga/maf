@@ -5,6 +5,7 @@ resource "github_repository" "repository" {
 
   has_issues             = true
   has_projects           = true
+  allow_auto_merge       = true
   allow_update_branch    = true
   delete_branch_on_merge = true
 }
