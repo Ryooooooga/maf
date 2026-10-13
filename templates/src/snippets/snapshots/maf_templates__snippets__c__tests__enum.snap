@@ -1,0 +1,10 @@
+---
+source: src/snippets/c.rs
+expression: "EnumTemplate { typ: color_enum() }.render().unwrap()"
+---
+typedef enum color_t {
+    color_red, // #ff0000
+    color_green, // #00ff00
+    color_blue, // #0000ff
+    color_black,
+} color_t;

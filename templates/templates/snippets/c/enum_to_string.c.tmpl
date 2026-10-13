@@ -1,0 +1,10 @@
+static inline const char *{{ typ.prefix }}_to_string({{ typ.type_name() }} {{ arg }}) {
+    switch ({{ arg }}) {
+        {%- for variant in typ.variants %}
+        case {{ typ.prefix }}_{{ variant.name }}:
+            return {{ variant.text | string_literal }};
+        {%- endfor %}
+        default:
+            return {{ unknown | string_literal }};
+    }
+}
